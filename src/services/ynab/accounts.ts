@@ -22,3 +22,12 @@ export async function getAccountByName(budgetId: string, accountName: string) {
   }
   return account;
 }
+
+export async function addTransactionToAccount(budgetId: string, accountId: string) {
+  await ynabApi.transactions.createTransaction(budgetId, {
+    transaction: {
+      account_id: accountId,
+      amount: 1000,
+    },
+  });
+}

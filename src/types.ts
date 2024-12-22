@@ -6,6 +6,7 @@ export type EnvKey =
   | 'YNAB_BASE_URL'
   | 'YNAB_BUDGET_NAME'
   | 'YNAB_ACCOUNT_NAME_TO_ADD_TRANSACTIONS_TO'
+  | 'YNAB_ACCOUNT_NAME'
   | 'OP_SERVICE_ACCOUNT_TOKEN'
   | 'PGE_BASE_URL'
   | 'LOG_LEVEL'
@@ -14,4 +15,10 @@ export type EnvKey =
 export interface PgeData {
   dueDate: string;
   amountDue: number;
+}
+
+export interface PgeCredentials {
+  username: string;
+  password: string;
+  accountNumber: string;
 }

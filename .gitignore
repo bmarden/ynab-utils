@@ -176,3 +176,6 @@ dist
 
 # Screenshots from playwright flows
 screenshots/
+
+# Browser auth sessions
+.auth/
