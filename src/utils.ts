@@ -1,12 +1,12 @@
 import { logger } from '@/logger';
-import { client } from '@/services/op';
+import type { EnvKey } from '@/types';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const scriptDir = import.meta.dir;
 const rootDir = path.join(scriptDir, '..');
 
-export function getEnvVar(name: string, defaultValue?: string): string {
+export function getEnvVar(name: EnvKey, defaultValue?: string): string {
   const value: unknown = process.env[name];
   if (!value || typeof value !== 'string') {
     if (defaultValue) {
@@ -34,11 +34,4 @@ export function clearAndCreateDir(dirPath: string) {
   } catch (err) {
     logger.error(`Could not create the directory: ${pathToClearAndCreate}`, err);
   }
-}
-
-export async function getPgeCredentials() {
-  return {
-    username: await client.secrets.resolve('op://dev/pge-credentials/username'),
-    password: await client.secrets.resolve('op://dev/pge-credentials/password'),
-  };
 }

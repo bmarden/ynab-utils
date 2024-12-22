@@ -24,6 +24,7 @@
     "eslint": "^9.17.0",
     "pino": "^9.5.0",
     "playwright": "^1.49.1",
-    "typescript-eslint": "^8.18.1"
+    "typescript-eslint": "^8.18.1",
+    "ynab": "^2.6.0"
   }
 }
