@@ -1,4 +1,6 @@
-# ynab-bill-checker
+# ynab-utils
+
+Scripts to help manage YNAB data
 
 To install dependencies:
 
