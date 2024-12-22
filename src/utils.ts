@@ -65,3 +65,13 @@ export async function getBrowserContext(browser: Browser, authName: string) {
     throw error;
   }
 }
+
+export function convertToMilliunits(
+  amount: number,
+  type: 'negative' | 'positive' = 'positive',
+): number {
+  if (type === 'negative') {
+    return amount * -1000;
+  }
+  return amount * 1000;
+}

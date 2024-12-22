@@ -1,5 +1,6 @@
 import { logger } from '@/logger';
 import { ynabApi } from '@/services/ynab/api';
+import type { SaveScheduledTransaction } from 'ynab';
 
 export async function getAccountsByBudgetId(budgetId: string) {
   try {
@@ -20,14 +21,25 @@ export async function getAccountByName(budgetId: string, accountName: string) {
   if (!account) {
     throw new Error(`Could not find the account: ${accountName}`);
   }
+
+  logger.info(`Retrieved account with id: ${account.id}`);
   return account;
 }
 
-export async function addTransactionToAccount(budgetId: string, accountId: string) {
-  await ynabApi.transactions.createTransaction(budgetId, {
-    transaction: {
-      account_id: accountId,
-      amount: 1000,
+interface AddTransactionArgs {
+  budgetId: string;
+  transaction: SaveScheduledTransaction;
+}
+
+export async function addTransactionToAccount(args: AddTransactionArgs) {
+  const { budgetId, transaction } = args;
+
+  logger.info({ transaction }, 'Adding transaction to YNAB');
+  await ynabApi.scheduledTransactions.createScheduledTransaction(budgetId, {
+    scheduled_transaction: {
+      ...transaction,
     },
   });
+
+  logger.info('Transaction added to YNAB');
 }
