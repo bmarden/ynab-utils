@@ -1,4 +1,4 @@
-import { client } from "@/services/op/client";
+import { client } from '@/services/op/client';
 
 export async function getPgeCredentials() {
   return {

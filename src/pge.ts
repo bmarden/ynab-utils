@@ -27,7 +27,7 @@ async function getPgeData(page: pw.Page): Promise<PgeData> {
   await page.locator('#home_login_submit').click();
 
   await page.waitForURL(
-    `${pgeBaseUrl}/#myaccount/dashboard/summary/${pgeCredentials.accountNumber}`
+    `${pgeBaseUrl}/#myaccount/dashboard/summary/${pgeCredentials.accountNumber}`,
   );
 
   await page.screenshot({ path: `${PGE_SCREENSHOTS_DIR}/dashboard.png`, fullPage: true });
@@ -56,7 +56,7 @@ async function main() {
   logger.info('Clearing the screenshots directory');
   clearAndCreateDir('screenshots/pge');
 
-  // const pgeData = await getPgeData(page);
+  const pgeData = await getPgeData(page);
 
   // Gracefully close the browser
   logger.info('Closing the browser');

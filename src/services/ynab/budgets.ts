@@ -14,7 +14,7 @@ export async function getBudgets() {
 
 export async function getBudgetByName(budgetName: string) {
   const budgets = await getBudgets();
-  const budget = budgets.find(b => b.name === budgetName);
+  const budget = budgets.find((b) => b.name === budgetName);
   if (!budget) {
     logger.warn(`Budget not found: ${budgetName}`);
     throw new Error(`Budget not found: ${budgetName}`);
